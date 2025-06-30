@@ -1,0 +1,49 @@
+services:
+  product-service:
+    build: ./TotalPlayBack/Products
+    ports:
+      - "8081:8081"
+    networks:
+      - tecnoshop
+
+  category-service:
+    build: ./TotalPlayBack/Categories
+    ports:
+      - "8082:8082"
+    networks:
+      - tecnoshop
+
+  user-service:
+    build: ./TotalPlayBack/Users
+    ports:
+      - "8083:8083"
+    networks:
+      - tecnoshop
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
+  api-gateway:
+    build:
+      context: ./TotalPlayBack/Gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - product-service
+      - category-service
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
+    networks:
+      - tecnoshop
+  frontend:
+    build: ./totalplayfront
+    ports:
+      - 3000:3000
+    depends_on:
+      - api-gateway
+    networks:
+      - tecnoshop
+
+networks:
+  tecnoshop:
+    driver: bridge
