@@ -10,7 +10,7 @@ Este proyecto representa la capa frontend de una aplicación web para la gestió
 * **Por qué:** Para demostrar competencia en herramientas actuales del ecosistema frontend.
 * **Cómo**: A través de una estructura modular, consumo de API REST y uso avanzado de Tailwind CSS con enfoque CSS-first.
 
-## 4. Funcionalidad
+## Funcionalidad
 
 ![**4.1.1 Dashboard principal**](doc/images/1.png)
 
